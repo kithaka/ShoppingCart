@@ -1,1 +1,2 @@
 page.replace_html('cart', render(@cart))
+#the code replaces the content in the id='cart' with @cart html

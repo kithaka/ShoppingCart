@@ -4,6 +4,7 @@
 <table>
 <% @products.each do |product| %>
 <tr class="<%= cycle('list_line_odd', 'list_line_even') %>" >
+	<!--rails helper cycle alternates the formatting of rows between the two classes-->
 <td>
 <%= image_tag(product.image_url, :class => 'list_image') %>
 </td>
@@ -12,6 +13,9 @@
 <dt><%= product.title %></dt>
 <dd><%= truncate(strip_tags(product.description),
 :length => 80) %></dd>
+<!--truncate helper method organizes the display of first eight characters of product.description-->
+<!-- the strip_tag method organizes for the removal of HMTL tages in the description-->
+<!-- the dl, dt and dd are description parameters used to minimize formatting-->
 </dl>
 </td>
 <td class="list_actions" >

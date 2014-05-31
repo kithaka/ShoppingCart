@@ -1,12 +1,14 @@
+
 <div class="cart_title" >Your Cart</div>
 <table>
 <%=render(cart.line_items) %>
+<!--the render method iterates over all atributes of object passed to it-->
+<!--it will render the _line_items partial for every iteration-->
 <tr class="total_line" >
 <td colspan="2" >Total</td>
 <td class="total_cell" ><%= number_to_currency(cart.total_price) %></td>
 </tr>
 </table>
-<%=button_to "Checkout", new_order_path, :method=> :get %>
+<%=button_to "Buy Selected Books", new_order_path, :method=> :get %>
 <%= button_to 'Empty cart', cart, :method => :delete,   
    :confirm => 'Are you sure?' %>
-

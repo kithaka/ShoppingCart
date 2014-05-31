@@ -1,13 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+#a fixture contains the specifications of the inital contents of a model under test
+#you use a fixture instead of creating a product and saving it in the database
+#a fixture loads the model with know data at the begining of every unit test
+ruby:
+  title: Programing Ruby 1.9
+  description: Ruby is the fastest growing and most exciting dynamic
+             language out there. If you need to get working programs
+            delivered fast, you should add Ruby to your toolbox.
 
-one:
-  title: MyString
-  description: MyText
-  image_url: MyString
-  price: 9.99
+  image_url: ruby.png
+  price: 49.50
 
-two:
-  title: MyString
-  description: MyText
-  image_url: MyString
-  price: 9.99
+#two:
+  #title: MyString
+  #description: MyText
+  #image_url: MyString
+  #price: 9.99

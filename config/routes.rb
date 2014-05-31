@@ -1,4 +1,17 @@
 Depot::Application.routes.draw do
+  get "admin"=>"admin#index"
+  controller :sessions do
+    #routes description without using rails resources
+  get "login"=> :new
+
+  post "login"=> :create
+
+  delete "logout"=> :destroy
+end
+#scope '(:locale)' do
+  #all the routes nested in the locale will have a translation option
+  resources :users
+
   resources :orders
 
   resources :line_items
@@ -7,7 +20,9 @@ Depot::Application.routes.draw do
 
   get "store/index"
 
-  resources :products
+  resources :products do
+    get :who_bought, :on=> :member
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -58,11 +73,13 @@ Depot::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'store#index', :as =>'store'
+   root :to => 'store#index',:as =>'store'
+   #the :as=>'store' creates a store_path
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+#end
 end

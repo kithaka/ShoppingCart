@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
+  skip_before_filter :authorize, :only=>[:create, :update, :destroy]
   def index
     @carts = Cart.all
 
@@ -13,13 +14,20 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    begin
     @cart = Cart.find(params[:id])
-
+  rescue ActiveRecord::RecordNotFound
+   logger.error "Attempt to acess invalid cart #{params[:id]}"
+    #uses the cart controller logger to record the recordnotfound error
+    redirect_to store_url, :notice=>'Invalid cart'
+   # notice: 'Invalid displays in the store_url after redirect'
+  else
     respond_to do |format|
-      format.html # show.html.erb
+      format.html #show.html.erb
       format.json { render :json => @cart }
     end
   end
+end
 
   # GET /carts/new
   # GET /carts/new.json
@@ -72,12 +80,14 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart = Cart.find(params[:id])
+    @cart =current_cart
+    #Cart.find(params[:id])
     @cart.destroy
-
+    session[:cart_id]=nil
     respond_to do |format|
-      format.html { redirect_to carts_url }
-      format.json { head :no_content }
+      format.html { redirect_to (store_url), :notice=>'Your cart is currently empty'}
+        #carts_url , initisl redirect
+      format.json { head :ok }
     end
   end
 end

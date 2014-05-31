@@ -5,7 +5,7 @@
         border: 2px solid red;
         padding: 1em;
         margin-bottom: 2em;
-        background-color: #f0f0f0;
+        background-color: #000;
         font: bold smaller sans-serif;
 }
 
@@ -18,25 +18,27 @@
 
 /*Styles for main page */
 #banner {
-background: #9c9;
+background: #CF9;
 padding-top: 10px;
 padding-bottom: 10px;
-border-bottom: 2px solid;
+border-width: 2px;
+border-style: solid;
+/*border-bottom: 2px solid; */
 font: small-caps 40px/40px "Times New Roman", serif;
-color: #282;
+color: #31E;
 text-align: center;
 }
 #banner img {
 float: left;
 }
 #columns {
-background: #141;
+background: #ACF;
 }
 #main {
 margin-left: 17em;
 padding-top: 4ex;
 padding-left: 2em;
-background: white;
+background: AliceBlue;
 }
 #side {
 float: left;
@@ -44,10 +46,10 @@ padding-top: 1em;
 padding-left: 1em;
 padding-bottom: 1em;
 width: 16em;
-background: #141;
+background: #ACF;
 }
 #side a {
-color: #bfb;
+color: blue;
 font-size: small;
 }
 /*Styles for the cart in the main page */
@@ -55,7 +57,7 @@ font-size: small;
 #store .cart_title {
 font: 120% bold;
 }
-#store .item_price, #store .total_line {
+#store.item_price, .total_line {
 text-align: right;
 }
 #store .total_line .total_cell {
@@ -66,7 +68,7 @@ border-top: 1px solid #595;
 #cart, #cart table {
 font-size: smaller;
 color:
-white;
+black;
 }
 #cart table {
 border-top:
@@ -181,6 +183,23 @@ color: #dfd;
 background: #141;
 font-family: sans-serif;
 padding: 0.2em 1em;
+}
+.depot_form label {
+width: 5em;
+float: left;
+text-align: right;
+padding-top: 0.2em;
+margin-right: 0.1em;
+display: block;
+}
+.depot_form select, .depot_form textarea, .depot_form input {
+margin-left: 0.5em;
+}
+.depot_form .submit {
+margin-left: 4em;
+}
+.depot_form div {
+margin: 0.5em 0;
 }
 
 

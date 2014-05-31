@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
+  skip_before_filter :authorize, :only=>[:new, :create]
   def index
-    @orders = Order.all
+    @orders = Order.paginate :page=>params[:page], :order=>'created_at desc',
+    :per_page =>10
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +29,8 @@ class OrdersController < ApplicationController
     @cart =current_cart
     if @cart.line_items.empty?
        redirect_to store_url, :notice=> "Your cart is empty"
-       return
+      return
+       #the return statement prevents an error due to the controller trying to redirect and render an output
     end
     @order = Order.new
 
@@ -35,7 +38,7 @@ class OrdersController < ApplicationController
       format.html # new.html.erb
       format.json { render :json => @order }
     end
-  end
+end
 
   # GET /orders/1/edit
   def edit
@@ -45,11 +48,16 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    @cart=current_cart
     @order = Order.new(params[:order])
+    @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, :notice => 'Order was successfully created.' }
+        Cart.destroy(session[:cart_id])
+        session[:cart_id]=nil
+        Notifier.order_received(@order).deliver
+        format.html { redirect_to (store_url),:notice => 'Order was successfully created.'}
         format.json { render :json => @order, :status => :created, :location => @order }
       else
         format.html { render :action => "new" }

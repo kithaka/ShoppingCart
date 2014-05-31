@@ -16,10 +16,10 @@
 #---
 # encoding: utf-8
 Product.delete_all
-Product.create(:title => 'Web Design for Developers',
+Product.create(:title => 'Beginning Rails 3',
   :description => 
     %{<p>
-        <em>Web Design for Developers</em> will show you how to make your
+        <em>Beginning Rails 3</em> will show you how to make your
         web-based application look professionally designed. We'll help you
         learn how to pick the right colors and fonts, avoid costly interface
         and accessibility mistakes -- your application will really come alive.
@@ -27,7 +27,7 @@ Product.create(:title => 'Web Design for Developers',
         and work through a web site redesign, taking a new design from concept
         all the way to implementation.
       </p>},
-  :image_url =>   'wd4d.jpg',    
+  :image_url =>   'Begining rails.jpg',    
   :price => 42.95)
 # . . .
 Product.create(:title => 'Programming Ruby 1.9',
@@ -41,15 +41,16 @@ Product.create(:title => 'Programming Ruby 1.9',
   :price => 49.50)
 # . . .
 
-Product.create(:title => 'Rails Test Prescriptions',
+Product.create(:title => 'Agile Web Development With Rails',
   :description => 
     %{<p>
-        <em>Rails Test Prescriptions</em> is a comprehensive guide to testing
+        <em> Agile Web Development With Rails </em> is a comprehensive guide to testing
         Rails applications, covering Test-Driven Development from both a
         theoretical perspective (why to test) and from a practical perspective
         (how to test effectively). It covers the core Rails testing tools and
         procedures for Rails 2 and Rails 3, and introduces popular add-ons,
         including Cucumber, Shoulda, Machinist, Mocha, and Rcov.
       </p>},
-  :image_url => 'rtp.jpg',
+      #the %{} is recommended for use with long strings
+  :image_url => 'Agile rails development.jpg',
   :price => 43.75)
